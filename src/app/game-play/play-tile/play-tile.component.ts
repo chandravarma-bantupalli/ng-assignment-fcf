@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-play-tile',
@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlayTileComponent implements OnInit {
 
+  @Input() public cardData;
+  @Output() public sendEventToCardHolder = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onClick() {
+    this.sendEventToCardHolder.emit(this.cardData.cardId);
   }
 
 }

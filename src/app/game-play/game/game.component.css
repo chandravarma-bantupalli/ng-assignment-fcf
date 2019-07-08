@@ -1,4 +1,14 @@
-mat-grid-tile {
-    background: lightblue;
+.gamePage {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
 }
-  
+
+
+.gameTile {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
