@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -19,13 +20,17 @@ export class GameComponent implements OnInit {
   public gameType = 2;
   gameTimer: any;
   public gameTimeLimit =  12000;
-  constructor() { }
+  public isGameOver: boolean;
+  public noOfXp: number;
+  constructor( private router: Router) { }
 
   ngOnInit() {
     this.playTiles = [];
     this.hardness = 4;
     this.score = 0;
     this.misses = 0;
+    this.noOfXp = 3;
+    this.isGameOver = false;
     this.generatePlayTiles();
     if (this.gameType === 1) {
       this.gameTimer = setTimeout(() => {
@@ -47,7 +52,7 @@ export class GameComponent implements OnInit {
   }
 
   cardClicked(cardId: number) {
-    if(this.isGameActive) {
+    if (this.isGameActive) {
 // tslint:disable-next-line: no-string-literal
       if ((this.selectedCard['cardId'] === cardId) && (this.hasChance === true)) {
         this.score++;
@@ -59,6 +64,11 @@ export class GameComponent implements OnInit {
         }, this.cardClickTimeInterval);
       } else {
         this.misses++;
+        this.noOfXp--;
+        if (this.misses === 3 || this.noOfXp === 0) {
+          this.isGameOver = true;
+          this.endGame();
+        }
       }
     }
   }
@@ -76,6 +86,11 @@ export class GameComponent implements OnInit {
 
   public pickRandomCardId(): number {
     return Math.floor(Math.random() * this.playTiles.length);
+  }
+
+  endGame() {
+    clearInterval(this.cardClickTimer);
+    this.router.navigate(['/game-over']);
   }
 
 }
