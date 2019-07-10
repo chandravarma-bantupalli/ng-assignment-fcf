@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
 import { GamePlayModule } from './game-play/game-play.module';
+import { ScoringService } from './scoring.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { GamePlayModule } from './game-play/game-play.module';
     HomeModule,
     GamePlayModule
   ],
-  providers: [],
+  providers: [ ScoringService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

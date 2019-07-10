@@ -8,6 +8,7 @@ import { PlayTileComponent } from './play-tile/play-tile.component';
 import { PlayerScoreComponent } from './player-score/player-score.component';
 import { TimerComponent } from './timer/timer.component';
 import { XpComponent } from './xp/xp.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { XpComponent } from './xp/xp.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     MatGridListModule
   ],
   exports: [

@@ -28,17 +28,20 @@
         <h5> Score : {{score}} </h5>
         <h5> Misses : {{misses}} </h5>
         <h5> XP : {{noOfXp}} </h5>
-        <div class="gameTile">
+        <div class="row">
+            <div class="col-6 pt-3" *ngFor="let tile of playTiles; let i = index">
+                <app-play-tile [cardData]='playTiles[i]' (sendEventToCardHolder)='cardClicked($event)' ></app-play-tile>
+            </div>
+        </div>
+        <!-- <div class="gameTile">
             <app-play-tile [cardData]=' playTiles[0] ' (sendEventToCardHolder) = 'cardClicked($event)'></app-play-tile>
             <app-play-tile [cardData]=' playTiles[1] ' (sendEventToCardHolder) = 'cardClicked($event)'></app-play-tile>
-            <!-- <p> {{tiles[0]}} {{tiles[1]}} </p> -->
         </div>
         
         <div class="gameTile">
             <app-play-tile [cardData]=' playTiles[2] ' (sendEventToCardHolder) = 'cardClicked($event)'></app-play-tile>
             <app-play-tile [cardData]=' playTiles[3] ' (sendEventToCardHolder) = 'cardClicked($event)'></app-play-tile>
-            <!-- <p> {{tiles[2]}} {{tiles[3]}} </p> -->
-        </div>
+        </div> -->
         <!-- <div class="gameTile" *ngFor="let tile of tiles; let i = index">
             <app-play-tile></app-play-tile> {{i + 1}}
         </div> -->

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ScoringService } from 'src/app/scoring.service';
 
 @Component({
   selector: 'app-game',
@@ -16,13 +17,13 @@ export class GameComponent implements OnInit {
   public selectedCard = {};
   hasChance: boolean;
   cardClickTimer: any;
-  public cardClickTimeInterval = 1000;
+  public cardClickTimeInterval = 1500;
   public gameType = 2;
   gameTimer: any;
   public gameTimeLimit =  12000;
   public isGameOver: boolean;
   public noOfXp: number;
-  constructor( private router: Router) { }
+  constructor( private router: Router, private scoringService: ScoringService ) { }
 
   ngOnInit() {
     this.playTiles = [];
@@ -56,6 +57,7 @@ export class GameComponent implements OnInit {
 // tslint:disable-next-line: no-string-literal
       if ((this.selectedCard['cardId'] === cardId) && (this.hasChance === true)) {
         this.score++;
+        this.sendScore();
         this.hasChance = false;
         clearInterval(this.cardClickTimer);
         this.pickCard();
@@ -86,6 +88,10 @@ export class GameComponent implements OnInit {
 
   public pickRandomCardId(): number {
     return Math.floor(Math.random() * this.playTiles.length);
+  }
+
+  sendScore() {
+    this.scoringService.playerScore.next(this.score)
   }
 
   endGame() {

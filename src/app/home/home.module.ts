@@ -12,6 +12,7 @@ import { ModeALevel3Component } from './mode-a-level3/mode-a-level3.component';
 import { ModeBLevel1Component } from './mode-b-level1/mode-b-level1.component';
 import { ModeBLevel2Component } from './mode-b-level2/mode-b-level2.component';
 import { ModeBLevel3Component } from './mode-b-level3/mode-b-level3.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
 // tslint:disable-next-line: max-line-length
@@ -28,6 +29,7 @@ import { ModeBLevel3Component } from './mode-b-level3/mode-b-level3.component';
   imports: [
     CommonModule,
     BrowserAnimationsModule,
+    FormsModule,
     MatRadioModule,
     MatListModule
   ],
